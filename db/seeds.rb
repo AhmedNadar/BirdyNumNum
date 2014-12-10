@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+food_types = ["Pancake", "Dessert", "Snack","Breakfast"]
+food_types.each { |d| FoodType.find_or_create_by(name: d) }
+
+food_preferences = ["Vegetarian", "Vegan", "Meat", "Dairy"]
+food_preferences.each { |d| FoodPreference.find_or_create_by(name: d) }
+
+cuisines = ["Italian", "Mexican", "Canadian", "Chinese", "Argentinian"]
+cuisines.each { |d| Cuisine.find_or_create_by(name: d) }
