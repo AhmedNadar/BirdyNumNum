@@ -27,3 +27,5 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'devise', github: 'plataformatec/devise'
 
+gem 'bourbon'
+gem 'neat'

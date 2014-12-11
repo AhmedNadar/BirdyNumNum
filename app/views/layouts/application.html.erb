@@ -1,17 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BirdyNumNum</title>
+  <title>Birdy Num Num</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render "layouts/partials/nav" %>
+  <%#= render "layouts/partials/nav" %>
+  <%= render "layouts/partials/header" %>
+    <div class="refills-wrapper">
+      <section class="container">
+        <div id="epsilon">
+          <div class="cards">
+            <div class="card">
+              <div class="card-image">
+                <img src="http://lorempixel.com/400/200/food/2/" alt="Food Preferences">
+              </div>
+              <% sidebar_values %>
+              <div class="card-header">Food Preferences</div>
+              <% @food_preferences.each do |fp| %>
+              <div class="card-copy">
+                <p><%= fp.name %></p>
+              </div>
+              <% end %>
+              <!-- <div class="card-stats">
+                <ul>
+                  <li>98<span>Items</span></li>
+                  <li>298<span>Things</span></li>
+                  <li>923<span>Objects</span></li>
+                </ul>
+              </div> -->
+            </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-<%= yield %>
+            <div class="card">
+              <div class="card-image">
+                <img src="http://lorempixel.com/400/200/food/5/" alt="Food Types">
+              </div>
+              <div class="card-header">Food Types</div>
+              <% @food_types.each do |ft| %>
+              <div class="card-copy">
+                <p><%= ft.name %></p>
+              </div>
+              <% end %>
+            </div>
 
+            <div class="card">
+              <div class="card-image">
+                <img src="http://lorempixel.com/400/200/nightlife/3/" alt="Cuisines">
+              </div>
+              <div class="card-header">Cuisines</div>
+              <% @cuisines.each do |c| %>
+              <div class="card-copy">
+                <p><%= c.name %></p>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div id="zeta">
+          <% if notice %>
+            <p class="notice"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+        </div>
+      </section>
+    </div>
+  <%= render "layouts/partials/footer" %>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <h1>Listing recipes</h1>
 
-<table>
+
+<table class="table-borders">
   <thead>
     <tr>
       <th>Title</th>
@@ -14,29 +15,27 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%= recipe.title %></td>
-        <td><%= recipe.cooking_time %></td>
-        <td><%= recipe.difficulty_level %></td>
-        <td><%= recipe.food_preference.name %></td>
-        <td><%= recipe.food_type.name %></td>
-        <td><%= recipe.cuisine.name %></td>
-        <td><%= recipe.ingredients %></td>
-        <td><%= recipe.procedure %></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <% if user_signed_in? %>
-          <td><%= link_to 'Edit', edit_recipe_path(recipe), :class=>"btn btn-success btn-small"%></td>
-          <td><%= link_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "btn btn-danger btn-small" %></td>
-        <%end%>
-      </tr>
-    <% end %>
+    <tr>
+      <td><%= recipe.title %></td>
+      <td><%= recipe.cooking_time %></td>
+      <td><%= recipe.difficulty_level %></td>
+      <td><%= recipe.food_preference.name %></td>
+      <td><%= recipe.food_type.name %></td>
+      <td><%= recipe.cuisine.name %></td>
+      <td><%= recipe.ingredients %></td>
+      <td><%= recipe.procedure %></td>
+      <td><%= button_to 'Show', recipe, class:"sign-up" %></td>
+      <% if user_signed_in? %>
+        <td><%= button_to 'Edit', edit_recipe_path(recipe), class:"sign-in"%></td>
+        <td><%= button_to 'Delete', recipe, method: :delete, data: { confirm: 'Are you sure?' }, class:"sign-up" %></td>
+      <%end%>
+      <!-- <td><button>Confirm</button><button>Reject</button></td> -->
+    </tr>
+    <%end%>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Recipe', new_recipe_path %>
+<%= button_to 'New Recipe', new_recipe_path %>
 
