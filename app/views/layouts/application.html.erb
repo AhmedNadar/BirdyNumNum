@@ -11,18 +11,21 @@
   <%= render "layouts/partials/header" %>
     <div class="refills-wrapper">
       <section class="container">
+
         <div id="epsilon">
+        <% sidebar_values %>
+        <%= form_tag(recipes_path, method: :get) do %>
           <div class="cards">
             <div class="card">
               <div class="card-image">
                 <img src="http://lorempixel.com/400/200/food/2/" alt="Food Preferences">
               </div>
-              <% sidebar_values %>
               <div class="card-header">Food Preferences</div>
-              <% @food_preferences.each do |fp| %>
-              <div class="card-copy">
-                <p><%= fp.name %></p>
-              </div>
+              <p><%= radio_button_tag 'food_preferences', '0', true %>All</p>
+                <% @food_preferences.each do |fp| %>
+                <div class="card-copy">
+                  <p><%= radio_button_tag 'food_preferences', fp.id %><%= fp.name %></p>
+                </div>
               <% end %>
               <!-- <div class="card-stats">
                 <ul>
@@ -38,9 +41,10 @@
                 <img src="http://lorempixel.com/400/200/food/5/" alt="Food Types">
               </div>
               <div class="card-header">Food Types</div>
+              <p><%= radio_button_tag 'food_types', '0', true %>All</p>
               <% @food_types.each do |ft| %>
               <div class="card-copy">
-                <p><%= ft.name %></p>
+                <p><%= radio_button_tag 'food_types', ft.id %><%= ft.name %></p>
               </div>
               <% end %>
             </div>
@@ -50,14 +54,18 @@
                 <img src="http://lorempixel.com/400/200/nightlife/3/" alt="Cuisines">
               </div>
               <div class="card-header">Cuisines</div>
+              <p><%= radio_button_tag 'cuisines', '0', true %>All</p>
               <% @cuisines.each do |c| %>
               <div class="card-copy">
-                <p><%= c.name %></p>
+                <p><%= radio_button_tag 'cuisines', c.id %><%= c.name %></p>
               </div>
               <% end %>
             </div>
+            <%= submit_tag("Filter") %>
           </div>
+        <% end %>
         </div>
+
         <div id="zeta">
           <% if notice %>
             <p class="notice"><%= notice %></p>
