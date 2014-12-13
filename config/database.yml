@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: birdy-num-num_production
-  username: birdy-num-num
-  password: <%= ENV['BIRDY-NUM-NUM_DATABASE_PASSWORD'] %>
+  # username: birdy-num-num
+  # password: <%= ENV['BIRDY-NUM-NUM_DATABASE_PASSWORD'] %>
+  pool: 5
