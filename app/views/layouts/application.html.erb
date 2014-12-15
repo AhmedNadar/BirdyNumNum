@@ -14,17 +14,23 @@
 
         <div id="epsilon">
         <% sidebar_values %>
-        <%= form_tag(recipes_path, method: :get) do %>
+        <%= form_for(:recipes, method: :get) do |f| %>
           <div class="cards">
             <div class="card">
               <div class="card-image">
                 <img src="http://lorempixel.com/400/200/food/2/" alt="Food Preferences">
               </div>
+
+
               <div class="card-header">Food Preferences</div>
-              <p><%= radio_button_tag 'food_preferences', '0', true %>All</p>
+              <div>
+                <% selected = params[:food_preferences] == "0" ||  (!params[:food_preferences].present?) %>
+                <%= radio_button_tag 'food_preferences', '0', selected %> All
+              </div>
                 <% @food_preferences.each do |fp| %>
                 <div class="card-copy">
-                  <p><%= radio_button_tag 'food_preferences', fp.id %><%= fp.name %></p>
+                  <% selected = params[:food_preferences] == "#{fp.id}" %>
+                  <%= radio_button_tag 'food_preferences', fp.id, selected %><%= fp.name %>
                 </div>
               <% end %>
               <!-- <div class="card-stats">
@@ -41,10 +47,12 @@
                 <img src="http://lorempixel.com/400/200/food/5/" alt="Food Types">
               </div>
               <div class="card-header">Food Types</div>
-              <p><%= radio_button_tag 'food_types', '0', true %>All</p>
+              <% selected = params[:food_types] == "0" ||  (!params[:food_types].present?) %>
+              <p><%= radio_button_tag 'food_types', '0', selected %>All</p>
               <% @food_types.each do |ft| %>
               <div class="card-copy">
-                <p><%= radio_button_tag 'food_types', ft.id %><%= ft.name %></p>
+                <% selected = params[:food_types] == "#{ft.id}" %>
+                <p><%= radio_button_tag 'food_types', ft.id, selected %><%= ft.name %></p>
               </div>
               <% end %>
             </div>
@@ -54,10 +62,12 @@
                 <img src="http://lorempixel.com/400/200/nightlife/3/" alt="Cuisines">
               </div>
               <div class="card-header">Cuisines</div>
-              <p><%= radio_button_tag 'cuisines', '0', true %>All</p>
+              <% selected = params[:cuisines] == "0" ||  (!params[:cuisines].present?) %>
+              <p><%= radio_button_tag 'cuisines', '0', selected %>All</p>
               <% @cuisines.each do |c| %>
               <div class="card-copy">
-                <p><%= radio_button_tag 'cuisines', c.id %><%= c.name %></p>
+                <% selected = params[:cuisines] == "#{c.id}" %>
+                <p><%= radio_button_tag 'cuisines', c.id, selected %><%= c.name %></p>
               </div>
               <% end %>
             </div>
@@ -67,6 +77,11 @@
         </div>
 
         <div id="zeta">
+        <% form_for(:recipes, method: :get)  do |f| %>
+          <%= text_field_tag 'search', nil, placeholder: "Search" %>
+          <%= f.submit "Search" %>
+        <% end %>
+
           <% if notice %>
             <p class="notice"><%= notice %></p>
           <% end %>
