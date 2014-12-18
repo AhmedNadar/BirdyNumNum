@@ -20,8 +20,6 @@
               <div class="card-image">
                 <img src="http://lorempixel.com/400/200/food/2/" alt="Food Preferences">
               </div>
-
-
               <div class="card-header">Food Preferences</div>
               <div>
                 <% selected = params[:food_preferences] == "0" ||  (!params[:food_preferences].present?) %>
@@ -33,14 +31,6 @@
                   <%= radio_button_tag 'food_preferences', fp.id, selected %><%= fp.name %>
                 </div>
               <% end %>
-              <!-- <div class="card-stats">
-                <ul>
-                  <li>98<span>Items</span></li>
-                  <li>298<span>Things</span></li>
-                  <li>923<span>Objects</span></li>
-                </ul>
-              </div> -->
-            </div>
 
             <div class="card">
               <div class="card-image">
